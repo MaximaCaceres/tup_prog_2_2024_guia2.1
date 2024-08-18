@@ -10,7 +10,8 @@ namespace RegistroGuia2._1.Models
 {
    public class Departamento
     {
-        public int CantidadRegistrados {get; private set;}
+        public int CantidadRegistrados 
+        { get { return registro.Count; } }
         ArrayList registro = new ArrayList();//representa la composicion.
         #region Metodos
         Random letra = new Random();//creo un obj de tipo  random para el tema de letras.
@@ -22,7 +23,6 @@ namespace RegistroGuia2._1.Models
             string serie = GenerarSerie();
             RegistroVehiculo regi = new RegistroVehiculo(paten, propietario, serie);//se crea el obj y le pasamos los valores atrvez del contructor.
             registro.Add(regi);//agregamos un obj registro al arraylist.
-            CantidadRegistrados++;//contador para llevar la cantidad de registros.
             return regi;
         }
         public RegistroVehiculo VerRegistro(int idx)//buscamos en el arraylist un objeto registro en base al idx.
@@ -40,9 +40,9 @@ namespace RegistroGuia2._1.Models
             int nroCarac = letra.Next(100);
 
             char C1 = (char)letra.Next((int)'A', (int)'Z' + 1);//como generar letras aleatorias.
-            char C2 = (char)letra.Next((int)'A', (int)'Z' + 1);
+            char C2 = (char)letra.Next((int)'A', (int)'Z' + 1);//cada letra tiene un numero, el char si lo casteas te da ese numero
+                                                               //siendo numero es facil generar letras aleatorias.
 
-            
             string chinomandarin = $"{C1}{C2}{numReg++:000}";
             return chinomandarin;
         }
